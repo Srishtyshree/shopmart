@@ -1,0 +1,104 @@
+/* ===== Editorial Category Cards ===== */
+.category-card {
+  position: relative;
+  display: block;
+  height: 280px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Background image with zoom on hover */
+.category-card-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.category-card:hover .category-card-img {
+  transform: scale(1.07);
+}
+
+/* Dark gradient overlay */
+.category-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(13, 13, 15, 0.9) 0%,
+    rgba(13, 13, 15, 0.4) 55%,
+    rgba(13, 13, 15, 0.1) 100%
+  );
+  transition: background 0.4s ease;
+}
+
+.category-card:hover .category-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(13, 13, 15, 0.95) 0%,
+    rgba(13, 13, 15, 0.55) 55%,
+    rgba(13, 13, 15, 0.2) 100%
+  );
+}
+
+/* Content layout */
+.category-card-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  z-index: 1;
+}
+
+/* Issue number */
+.category-index {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.category-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+
+.category-desc {
+  font-size: 0.78rem;
+  color: rgba(245, 240, 232, 0.6);
+  line-height: 1.5;
+}
+
+/* Arrow button */
+.category-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: var(--gold);
+  align-self: flex-end;
+  transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.category-card:hover .category-arrow {
+  background: var(--gold);
+  color: #0d0d0f;
+  border-color: var(--gold);
+  transform: translateX(3px);
+}
+
