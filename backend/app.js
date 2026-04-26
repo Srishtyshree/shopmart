@@ -4,6 +4,7 @@ const cors = require('cors');
 const productsRouter = require('./routes/products');
 const cartRouter = require('./routes/cart');
 const ordersRouter = require('./routes/orders');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.get('/api/categories', (req, res) => {
 app.use('/api/products', productsRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/auth', authRouter);
 
 module.exports = app;

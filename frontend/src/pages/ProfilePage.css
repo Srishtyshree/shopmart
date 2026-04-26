@@ -1,163 +1,428 @@
 .profile-page {
-  padding: 64px 24px;
+  padding-bottom: 120px;
   background: var(--white);
-  min-height: calc(100vh - 72px);
-  display: flex;
-  justify-content: center;
+}
+
+.profile-header {
+  padding: 80px 48px;
+  text-align: center;
+  border-bottom: 1px solid var(--light-gray);
+  margin-bottom: 64px;
+}
+
+.profile-title {
+  font-size: clamp(40px, 5vw, 64px);
+  margin-bottom: 16px;
+  color: var(--black);
+}
+
+.profile-subtitle {
+  color: var(--gray);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .profile-container {
-  width: 100%;
-  max-width: 600px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 64px;
+  align-items: start;
 }
 
-/* Avatar Header */
-.profile-header-card {
+/* Sidebar */
+.profile-sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.profile-user-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 48px;
-}
-
-.profile-avatar-wrapper {
-  position: relative;
-  margin-bottom: 16px;
+  gap: 16px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--light-gray);
+  margin-bottom: 32px;
 }
 
 .profile-avatar {
-  width: 96px;
-  height: 96px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--light-gray);
-  color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px;
-  font-weight: 500;
-  border: 1px solid var(--gray);
-}
-
-.profile-edit-avatar {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 32px;
-  height: 32px;
   background: var(--black);
   color: var(--white);
-  border: none;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.profile-edit-avatar:hover {
-  transform: scale(1.1);
-}
-
-.profile-name {
   font-family: 'Cormorant Garamond', serif;
-  font-weight: 400;
-  font-size: 32px;
-  color: var(--black);
+  font-size: 28px;
+}
+
+.profile-user-info h3 {
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 4px;
 }
 
-.profile-email {
+.profile-user-info p {
   font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.05em;
   color: var(--gray);
 }
 
-/* Menu List */
-.profile-menu-section {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.profile-menu-group {
+.profile-nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.profile-menu-title {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gray);
-  margin-bottom: 8px;
-  padding-left: 16px;
-}
-
-.profile-menu-item {
+.profile-nav-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 18px 16px;
+  padding: 12px 16px;
   background: transparent;
+  border: none;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 15px;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-nav-item:hover {
+  background: var(--cream);
+  color: var(--black);
+}
+
+.profile-nav-item.active {
+  background: var(--black);
+  color: var(--white);
+}
+
+.profile-nav-item.logout {
+  margin-top: 24px;
+  color: #a04040;
+}
+
+.profile-nav-item.logout:hover {
+  background: #fcf5f5;
+  color: #a04040;
+}
+
+/* Content Area */
+.profile-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.profile-card {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.account-details {
+  grid-column: 1 / -1;
+}
+
+.profile-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.profile-card-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.text-link {
+  background: none;
+  border: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  cursor: pointer;
+  border-bottom: 1px solid var(--black);
+  padding-bottom: 2px;
+}
+
+.profile-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 0;
+  gap: 24px;
+}
+
+.profile-empty-state p {
+  color: var(--gray);
+  font-size: 15px;
+}
+
+.btn-secondary {
+  padding: 12px 24px;
+  background: transparent;
+  border: 1px solid var(--black);
+  color: var(--black);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  align-items: center;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 15px;
+  color: var(--black);
+}
+
+/* Order Summary */
+.order-summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--light-gray);
+  border-radius: 8px;
+}
+
+.order-id {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.order-date {
+  font-size: 12px;
+  color: var(--gray);
+}
+
+.order-status {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: var(--white);
+}
+
+/* Order History View */
+.order-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.order-card {
   border: 1px solid var(--light-gray);
   border-radius: 8px;
-  text-decoration: none;
-  color: var(--black);
-  transition: background 0.2s, border-color 0.2s;
-  cursor: pointer;
-  width: 100%;
+  overflow: hidden;
 }
 
-.profile-menu-item:hover {
-  background: var(--cream);
-  border-color: var(--gray);
+.order-card-header {
+  padding: 16px 24px;
+  background: var(--light-gray);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.menu-item-left {
+.order-card-header h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.order-card-header p {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.order-card-actions {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.menu-item-left span {
+.order-card-body {
+  padding: 24px;
+}
+
+/* Wishlist View */
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.wishlist-item {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.wishlist-item img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.wishlist-item-info h3 {
   font-size: 14px;
   font-weight: 400;
+  margin-bottom: 4px;
 }
 
-.menu-item-left svg {
-  color: var(--black);
-  opacity: 0.8;
-}
-
-.chevron {
+.more-wishlist-items {
+  background: var(--light-gray);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--gray);
-  transition: transform 0.2s;
+  font-size: 24px;
+  cursor: pointer;
+  aspect-ratio: 3/4;
 }
 
-.profile-menu-item:hover .chevron {
-  transform: translateX(4px);
+/* Addresses View */
+.address-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.address-card {
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.address-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.address-card-header h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.address-card-header .badge {
+  font-size: 10px;
+  background: var(--black);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.address-card-body p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.address-card-body p:first-child {
   color: var(--black);
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-.sign-out-btn {
-  color: #a04040;
+.address-card-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--light-gray);
 }
 
-.sign-out-btn .menu-item-left svg {
-  color: #a04040;
+/* Settings View */
+.settings-form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.sign-out-btn:hover {
-  background: #fcf5f5;
-  border-color: #dcbaba;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-@media (max-width: 600px) {
-  .profile-page {
-    padding: 32px 16px;
+.form-group label {
+  font-size: 13px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--black);
+}
+
+@media (max-width: 900px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .profile-sidebar {
+    position: static;
+  }
+
+  .profile-overview-grid {
+    grid-template-columns: 1fr;
   }
 }

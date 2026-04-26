@@ -83,6 +83,46 @@
   color: var(--white);
 }
 
+.favorite-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--black);
+  opacity: 0;
+  border: none;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.favorite-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.product-card:hover .favorite-btn,
+.favorite-btn.favorited {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.favorite-btn.favorited svg {
+  color: #a04040;
+}
+
+.favorite-btn:hover svg {
+  transform: scale(1.1);
+}
+
 .product-card-info {
   padding: 24px;
   display: flex;

@@ -1,15 +1,26 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import './AuthPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Placeholder login logic
-    window.location.href = '/profile';
+    setError('');
+    
+    const result = await login(email, password);
+    if (result.success) {
+      navigate('/profile');
+    } else {
+      setError(result.error || 'Failed to login');
+    }
   };
 
   return (
@@ -22,6 +33,8 @@ const LoginPage = () => {
             <h1 className="auth-title">Welcome Back</h1>
             <p className="auth-subtitle">Enter your credentials to access your Atelier.</p>
             
+            {error && <div style={{ color: 'red', marginBottom: '1rem', padding: '1rem', border: '1px solid red' }}>{error}</div>}
+
             <form onSubmit={handleLogin} className="auth-form">
               <div className="form-group">
                 <label>Email Address</label>

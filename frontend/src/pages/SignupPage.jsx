@@ -1,51 +1,52 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import './AuthPage.css';
 
 const SignupPage = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  
+  const { register } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    // Placeholder signup logic
-    window.location.href = '/profile';
+    setError('');
+    
+    const result = await register(name, email, password);
+    if (result.success) {
+      navigate('/profile');
+    } else {
+      setError(result.error || 'Failed to create account');
+    }
   };
 
   return (
     <main className="auth-page page">
       <div className="auth-split">
-        <div className="auth-image-side" style={{ backgroundImage: "url('/images/women_chapter_bg.png')" }}>
+        <div className="auth-image-side signup-image" style={{ backgroundImage: "url('/images/women_products_bg.png')" }}>
         </div>
         <div className="auth-form-side">
           <div className="auth-form-container">
             <h1 className="auth-title">Create Account</h1>
-            <p className="auth-subtitle">Join the Maison WLD Atelier for exclusive access and personalized curation.</p>
+            <p className="auth-subtitle">Join MAISON·WLD for exclusive access.</p>
             
-            <form onSubmit={handleSignup} className="auth-form">
-              <div className="form-row">
-                <div className="form-group">
-                  <label>First Name</label>
-                  <input 
-                    type="text" 
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required 
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Last Name</label>
-                  <input 
-                    type="text" 
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required 
-                  />
-                </div>
-              </div>
+            {error && <div style={{ color: 'red', marginBottom: '1rem', padding: '1rem', border: '1px solid red' }}>{error}</div>}
 
+            <form onSubmit={handleSignup} className="auth-form">
+              <div className="form-group">
+                <label>Full Name</label>
+                <input 
+                  type="text" 
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Jane Doe"
+                  required 
+                />
+              </div>
               <div className="form-group">
                 <label>Email Address</label>
                 <input 
@@ -56,7 +57,6 @@ const SignupPage = () => {
                   required 
                 />
               </div>
-
               <div className="form-group">
                 <label>Password</label>
                 <input 
@@ -65,6 +65,7 @@ const SignupPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required 
+                  minLength="6"
                 />
               </div>
               
@@ -72,7 +73,7 @@ const SignupPage = () => {
             </form>
 
             <div className="auth-footer">
-              <p>Already have an account? <Link to="/login" className="auth-link">Sign In</Link></p>
+              <p>Already have an account? <Link to="/login" className="auth-link">Sign in</Link></p>
             </div>
           </div>
         </div>
